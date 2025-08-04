@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V3D20SW4N4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V3D20SW4N4');
+</script>
+	
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>SSGaussian: Semantic-Aware and Structure-Preserving 3D Style Transfer</title>
+  <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:site_name" content="SSGaussian" />
+  <meta property="og:type" content="video.other" />
+  <meta property="og:title" content="SSGaussian: Semantic-Aware and Structure-Preserving 3D Style Transfer" />
+  <meta property="og:description" content="SSGaussian: Semantic-Aware and Structure-Preserving 3D Style Transfer, 2025." />
+  <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/codemirror.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/codemirror.min.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/video_comparison.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</head>
+
+<body>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+	<div class="container" style="max-width: 950px;">
+    <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+        <h1 class="col-md-12 text-center" id="title">
+          <b>SSGaussian</b>: Semantic-Aware and Structure-Preserving 3D Style Transfer <br>
+        </h1>
+    </div>
+	</div>
+	</div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <image src="./resources/teaser.png" class="img-responsive" alt="overview" width="60%" style="width: 850px;margin:auto;">
+    </div>
+  </div>
+    <hr class="divider" />
+    <div class="container" style="max-width: 950px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p class="text-justify">
+                  Recent advancements in neural representations, such as Neural Radiance Fields and 3D Gaussian Splatting, have increased interest in applying style transfer to 3D scenes. While existing methods can transfer style patterns onto 3D-consistent neural representations, they struggle to effectively extract and transfer high-level style semantics from the reference style image. Additionally, the stylized results often lack structural clarity and separation, making it difficult to distinguish between different instances or objects within the 3D scene. To address these limitations, we propose SSGaussian, a 3D style transfer pipeline that effectively integrates prior knowledge from pretrained 2D diffusion models. Our pipeline consists of two key stages: First, we leverage diffusion priors to generate stylized renderings of key viewpoints. Then, we transfer the stylized key views onto the 3D representation. This process incorporates two innovative designs. The first is Cross-View Style Alignment, which inserts cross-view attention into the last upsampling block of the UNet, allowing feature interactions across multiple key views. This ensures that the diffusion model generates stylized key views that maintain both style fidelity and instance-level consistency. The second is Instance-level Style Transfer, which effectively leverages instance-level consistency across stylized key views and transfers it onto the 3D representation. This facilitates a more structured, visually coherent, and artistically enriched stylization. Extensive qualitative and quantitative experiments demonstrate that our 3D style transfer pipeline significantly outperforms state-of-the-art methods across a wide range of scenes, from forward-facing to challenging 360-degree environments.
+        </div>
+        </div>
+    </div>
+
+
+    <hr class="divider" />
+    <div class="container" style="max-width: 950px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Method</h2>
+                <br />
+                <image src="./resources/overview.png" class="img-responsive" alt="overview" width="60%" style="width: 850px;margin:auto;"></image>
+                <br />
+                <p class="text-justify">
+                  <b>Two Stage Stylization.</b> We decompose the 3D style transfer task into two sequential stages: the stylization of key views and the stylization of the 3D Gaussian Splatting (3DGS) representation based on those stylized key views. In Stage 1, given a style reference image along with RGB and depth images rendered from the 3DGS, we design a diffusion model to effectively transfer style semantics to the selected key viewpoints. In Stage 2, leveraging group matching between the key viewpoints and training views, we introduce an Instance-level Style Transfer approach that hierarchically transfers the style semantics onto the 3DGS representation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+  <hr class="divider" />
+    <div class="container" style="max-width: 950px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>3D Stylization Comparisons</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+              <span>Input</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                <image src="assets\imgs\udnie.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+                <video controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\input\trex.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+
+
+            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+                <b>SSGaussian</b>
+                <div class="embed-responsive embed-responsive-4by3">
+                  <video controls controls loop muted   class="embed-responsive-item">
+                    <source src="assets\videos\ours\trex_udnie.mp4" type="video/mp4">
+                  </video>
+                </div>
+            </div>
+
+            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+              <span>ARF</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\arf\trex_udnie.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+              <span>StyleGaussian</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\stylegaussian\trex_udnie.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+              <span>G-Style</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\g-style\trex_udnie.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <span>Input</span>
+            <div class="embed-responsive embed-responsive-4by3">
+              <image src="assets\imgs\sketch.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+              <video controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\input\fern.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+      
+      
+          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+              <b>SSGaussian</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                <video controls controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\ours\fern_sketch.mp4" type="video/mp4">
+                </video>
+              </div>
+          </div>
+      
+          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <span>ARF</span>
+            <div class="embed-responsive embed-responsive-4by3">
+              <video controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\arf\fern_sketch.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <span>StyleGaussian</span>
+            <div class="embed-responsive embed-responsive-4by3">
+              <video controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\stylegaussian\fern_sketch.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <span>G-Style</span>
+            <div class="embed-responsive embed-responsive-4by3">
+              <video controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\g-style\fern_sketch.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <span>Input</span>
+          <div class="embed-responsive embed-responsive-4by3">
+            <image src="assets\imgs\anime0400.jpg" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+            <video controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\input\horns.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+    
+    
+        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <b>SSGaussian</b>
+            <div class="embed-responsive embed-responsive-4by3">
+              <video controls controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\ours\horns_anime0400.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+    
+        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <span>ARF</span>
+          <div class="embed-responsive embed-responsive-4by3">
+            <video controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\arf\horns_anime0400.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <span>StyleGaussian</span>
+          <div class="embed-responsive embed-responsive-4by3">
+            <video controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\stylegaussian\horns_anime0400.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <span>G-Style</span>
+          <div class="embed-responsive embed-responsive-4by3">
+            <video controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\g-style\horns_anime0400.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <span>Input</span>
+        <div class="embed-responsive embed-responsive-4by3">
+          <image src="assets\imgs\fa04.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+          <video controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\input\flower.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+  
+  
+      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <b>SSGaussian</b>
+          <div class="embed-responsive embed-responsive-4by3">
+            <video controls controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\ours\flower_fa04.mp4" type="video/mp4">
+            </video>
+          </div>
+      </div>
+  
+      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <span>ARF</span>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\arf\flower_fa04.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <span>StyleGaussian</span>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\stylegaussian\flower_fa04.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <span>G-Style</span>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\g-style\flower_fa04.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <span>Input</span>
+      <div class="embed-responsive embed-responsive-4by3">
+        <image src="assets\imgs\14.jpg" style="width:50px;position:absolute;z-index:1;left:0px;top:15px;"></image>
+        <video controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\input\train.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+
+    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <b>SSGaussian</b>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\ours\train_14.mp4" type="video/mp4">
+          </video>
+        </div>
+    </div>
+
+    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <span>ARF</span>
+      <div class="embed-responsive embed-responsive-4by3">
+        <video controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\arf\train_14.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <span>StyleGaussian</span>
+      <div class="embed-responsive embed-responsive-4by3">
+        <video controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\stylegaussian\train_14.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <span>G-Style</span>
+      <div class="embed-responsive embed-responsive-4by3">
+        <video controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\g-style\train_14.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <span>Input</span>
+    <div class="embed-responsive embed-responsive-4by3">
+      <image src="assets\imgs\73.jpg" style="width:50px;position:absolute;z-index:1;left:0px;top:15px"></image>
+      <video controls loop muted   class="embed-responsive-item">
+        <source src="assets\videos\input\truck.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+
+  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <b>SSGaussian</b>
+      <div class="embed-responsive embed-responsive-4by3">
+        <video controls controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\ours\truck_73.mp4" type="video/mp4">
+        </video>
+      </div>
+  </div>
+
+  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <span>ARF</span>
+    <div class="embed-responsive embed-responsive-4by3">
+      <video controls loop muted   class="embed-responsive-item">
+        <source src="assets\videos\arf\truck_73.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <span>StyleGaussian</span>
+    <div class="embed-responsive embed-responsive-4by3">
+      <video controls loop muted   class="embed-responsive-item">
+        <source src="assets\videos\stylegaussian\truck_73.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <span>G-Style</span>
+    <div class="embed-responsive embed-responsive-4by3">
+      <video controls loop muted   class="embed-responsive-item">
+        <source src="assets\videos\g-style\truck_73.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+    <hr class="divider" />
+    <div class="container" style="max-width: 950px;">
+      <div class="row">
+          <div class="col-md-12">
+              <h2>Acknowledgements</h2>
+              <p>This webpage integrates components from many websites, including <a href="https://kunhao-liu.github.io/StyleRF/">StyleRF</a>, <a href="https://dorverbin.github.io/refnerf/">RefNeRF</a>, <a href="https://m-niemeyer.github.io/regnerf/">RegNeRF</a>, <a href="https://dreamfusion3d.github.io/">DreamFusion</a>, and <a href="https://richzhang.github.io/webpage-template/">Richard Zhang's template</a>.
+                We sincerely thank the authors for their great work and websites.</p>
+                <br></p>
+            </div>
+          </div>
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+    <script src="/assets/js/yall.js"></script>
+    <script>
+        yall(
+            {
+                observeChanges: true
+            }
+        );
+    </script>
+    <script src="/assets/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+    <!-- Import the component -->
+</body>
+
+</html>
