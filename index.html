@@ -62,7 +62,7 @@
             <div class="col-md-12">
                 <h2>Abstract</h2>
                 <p class="text-justify">
-                  Recent advancements in neural representations, such as Neural Radiance Fields and 3D Gaussian Splatting, have increased interest in applying style transfer to 3D scenes. While existing methods can transfer style patterns onto 3D-consistent neural representations, they struggle to effectively extract and transfer high-level style semantics from the reference style image. Additionally, the stylized results often lack structural clarity and separation, making it difficult to distinguish between different instances or objects within the 3D scene. To address these limitations, we propose SSGaussian, a 3D style transfer pipeline that effectively integrates prior knowledge from pretrained 2D diffusion models. Our pipeline consists of two key stages: First, we leverage diffusion priors to generate stylized renderings of key viewpoints. Then, we transfer the stylized key views onto the 3D representation. This process incorporates two innovative designs. The first is Cross-View Style Alignment, which inserts cross-view attention into the last upsampling block of the UNet, allowing feature interactions across multiple key views. This ensures that the diffusion model generates stylized key views that maintain both style fidelity and instance-level consistency. The second is Instance-level Style Transfer, which effectively leverages instance-level consistency across stylized key views and transfers it onto the 3D representation. This facilitates a more structured, visually coherent, and artistically enriched stylization. Extensive qualitative and quantitative experiments demonstrate that our 3D style transfer pipeline significantly outperforms state-of-the-art methods across a wide range of scenes, from forward-facing to challenging 360-degree environments.
+                  3D style transfer has achieved promising results, driven by advances in neural representations such as Neural Radiance Fields and 3D Gaussian Splatting. However, existing approaches struggle to capture high-level style semantics from reference images and often produce results with limited structural clarity and poor instance separation. To address these issues, we propose a novel two-stage pipeline that leverages prior knowledge from 2D diffusion models. In the first stage, stylized key views are generated using a diffusion-based process, augmented with a Cross-View Style Alignment module that introduces cross-view attention to ensure style fidelity and instance-level consistency across viewpoints. In the second stage, an Instance-level Style Transfer mechanism propagates these coherent stylistic characteristics to the underlying 3D representation. Our pipeline yields well-structured, semantically coherent stylization and outperforms state-of-the-art approaches across diverse scenes, as validated by extensive experiments.
         </div>
         </div>
     </div>
@@ -94,10 +94,10 @@
 
         <div class="row">
 
-            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
               <span>Input</span>
               <div class="embed-responsive embed-responsive-4by3">
-                <image src="assets\imgs\udnie.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+                <image src="assets\imgs\udnie.png" style="width:40px;position:absolute;z-index:1;left:0px"></image>
                 <video controls loop muted   class="embed-responsive-item">
                   <source src="assets\videos\input\trex.mp4" type="video/mp4">
                 </video>
@@ -105,7 +105,7 @@
             </div>
 
 
-            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
                 <b>SSGaussian</b>
                 <div class="embed-responsive embed-responsive-4by3">
                   <video controls controls loop muted   class="embed-responsive-item">
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
               <span>ARF</span>
               <div class="embed-responsive embed-responsive-4by3">
                 <video controls loop muted   class="embed-responsive-item">
@@ -122,7 +122,7 @@
                 </video>
               </div>
             </div>
-            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
               <span>StyleGaussian</span>
               <div class="embed-responsive embed-responsive-4by3">
                 <video controls loop muted   class="embed-responsive-item">
@@ -130,7 +130,7 @@
                 </video>
               </div>
             </div>
-            <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
               <span>G-Style</span>
               <div class="embed-responsive embed-responsive-4by3">
                 <video controls loop muted   class="embed-responsive-item">
@@ -138,14 +138,22 @@
                 </video>
               </div>
             </div>
+            <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+              <span>ABC-GS</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted   class="embed-responsive-item">
+                  <source src="assets\videos\abc-gs\trex_udnie.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
         </div>
 
         <div class="row">
 
-          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
             <span>Input</span>
             <div class="embed-responsive embed-responsive-4by3">
-              <image src="assets\imgs\sketch.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+              <image src="assets\imgs\sketch.png" style="width:40px;position:absolute;z-index:1;left:0px"></image>
               <video controls loop muted   class="embed-responsive-item">
                 <source src="assets\videos\input\fern.mp4" type="video/mp4">
               </video>
@@ -153,7 +161,7 @@
           </div>
       
       
-          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
               <b>SSGaussian</b>
               <div class="embed-responsive embed-responsive-4by3">
                 <video controls controls loop muted   class="embed-responsive-item">
@@ -162,7 +170,7 @@
               </div>
           </div>
       
-          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
             <span>ARF</span>
             <div class="embed-responsive embed-responsive-4by3">
               <video controls loop muted   class="embed-responsive-item">
@@ -170,7 +178,7 @@
               </video>
             </div>
           </div>
-          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
             <span>StyleGaussian</span>
             <div class="embed-responsive embed-responsive-4by3">
               <video controls loop muted   class="embed-responsive-item">
@@ -178,7 +186,7 @@
               </video>
             </div>
           </div>
-          <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
             <span>G-Style</span>
             <div class="embed-responsive embed-responsive-4by3">
               <video controls loop muted   class="embed-responsive-item">
@@ -186,14 +194,22 @@
               </video>
             </div>
           </div>
+          <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+            <span>ABC-GS</span>
+            <div class="embed-responsive embed-responsive-4by3">
+              <video controls loop muted   class="embed-responsive-item">
+                <source src="assets\videos\abc-gs\fern_sketch.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
       </div>
 
       <div class="row">
 
-        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
           <span>Input</span>
           <div class="embed-responsive embed-responsive-4by3">
-            <image src="assets\imgs\anime0400.jpg" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+            <image src="assets\imgs\anime0400.jpg" style="width:40px;position:absolute;z-index:1;left:0px"></image>
             <video controls loop muted   class="embed-responsive-item">
               <source src="assets\videos\input\horns.mp4" type="video/mp4">
             </video>
@@ -201,7 +217,7 @@
         </div>
     
     
-        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
             <b>SSGaussian</b>
             <div class="embed-responsive embed-responsive-4by3">
               <video controls controls loop muted   class="embed-responsive-item">
@@ -210,7 +226,7 @@
             </div>
         </div>
     
-        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
           <span>ARF</span>
           <div class="embed-responsive embed-responsive-4by3">
             <video controls loop muted   class="embed-responsive-item">
@@ -218,7 +234,7 @@
             </video>
           </div>
         </div>
-        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
           <span>StyleGaussian</span>
           <div class="embed-responsive embed-responsive-4by3">
             <video controls loop muted   class="embed-responsive-item">
@@ -226,7 +242,7 @@
             </video>
           </div>
         </div>
-        <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
           <span>G-Style</span>
           <div class="embed-responsive embed-responsive-4by3">
             <video controls loop muted   class="embed-responsive-item">
@@ -234,14 +250,22 @@
             </video>
           </div>
         </div>
+        <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+          <span>ABC-GS</span>
+          <div class="embed-responsive embed-responsive-4by3">
+            <video controls loop muted   class="embed-responsive-item">
+              <source src="assets\videos\abc-gs\horns_anime0400.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
     </div>
 
     <div class="row">
 
-      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
         <span>Input</span>
         <div class="embed-responsive embed-responsive-4by3">
-          <image src="assets\imgs\fa04.png" style="width:50px;position:absolute;z-index:1;left:0px"></image>
+          <image src="assets\imgs\fa04.png" style="width:40px;position:absolute;z-index:1;left:0px"></image>
           <video controls loop muted   class="embed-responsive-item">
             <source src="assets\videos\input\flower.mp4" type="video/mp4">
           </video>
@@ -249,7 +273,7 @@
       </div>
   
   
-      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
           <b>SSGaussian</b>
           <div class="embed-responsive embed-responsive-4by3">
             <video controls controls loop muted   class="embed-responsive-item">
@@ -258,7 +282,7 @@
           </div>
       </div>
   
-      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
         <span>ARF</span>
         <div class="embed-responsive embed-responsive-4by3">
           <video controls loop muted   class="embed-responsive-item">
@@ -266,7 +290,7 @@
           </video>
         </div>
       </div>
-      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
         <span>StyleGaussian</span>
         <div class="embed-responsive embed-responsive-4by3">
           <video controls loop muted   class="embed-responsive-item">
@@ -274,7 +298,7 @@
           </video>
         </div>
       </div>
-      <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
         <span>G-Style</span>
         <div class="embed-responsive embed-responsive-4by3">
           <video controls loop muted   class="embed-responsive-item">
@@ -282,14 +306,22 @@
           </video>
         </div>
       </div>
+      <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+        <span>ABC-GS</span>
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls loop muted   class="embed-responsive-item">
+            <source src="assets\videos\abc-gs\flower_fa04.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
   </div>
 
   <div class="row">
 
-    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
       <span>Input</span>
       <div class="embed-responsive embed-responsive-4by3">
-        <image src="assets\imgs\14.jpg" style="width:50px;position:absolute;z-index:1;left:0px;top:15px;"></image>
+        <image src="assets\imgs\14.jpg" style="width:40px;position:absolute;z-index:1;left:0px;top:0px;"></image>
         <video controls loop muted   class="embed-responsive-item">
           <source src="assets\videos\input\train.mp4" type="video/mp4">
         </video>
@@ -297,7 +329,7 @@
     </div>
 
 
-    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
         <b>SSGaussian</b>
         <div class="embed-responsive embed-responsive-4by3">
           <video controls controls loop muted   class="embed-responsive-item">
@@ -306,7 +338,7 @@
         </div>
     </div>
 
-    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
       <span>ARF</span>
       <div class="embed-responsive embed-responsive-4by3">
         <video controls loop muted   class="embed-responsive-item">
@@ -314,7 +346,7 @@
         </video>
       </div>
     </div>
-    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
       <span>StyleGaussian</span>
       <div class="embed-responsive embed-responsive-4by3">
         <video controls loop muted   class="embed-responsive-item">
@@ -322,7 +354,7 @@
         </video>
       </div>
     </div>
-    <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
       <span>G-Style</span>
       <div class="embed-responsive embed-responsive-4by3">
         <video controls loop muted   class="embed-responsive-item">
@@ -330,14 +362,22 @@
         </video>
       </div>
     </div>
+    <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+      <span>ABC-GS</span>
+      <div class="embed-responsive embed-responsive-4by3">
+        <video controls loop muted   class="embed-responsive-item">
+          <source src="assets\videos\abc-gs\train_14.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
 </div>
 
 <div class="row">
 
-  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
     <span>Input</span>
     <div class="embed-responsive embed-responsive-4by3">
-      <image src="assets\imgs\73.jpg" style="width:50px;position:absolute;z-index:1;left:0px;top:15px"></image>
+      <image src="assets\imgs\73.jpg" style="width:40px;position:absolute;z-index:1;left:0px;top:0px"></image>
       <video controls loop muted   class="embed-responsive-item">
         <source src="assets\videos\input\truck.mp4" type="video/mp4">
       </video>
@@ -345,7 +385,7 @@
   </div>
 
 
-  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
       <b>SSGaussian</b>
       <div class="embed-responsive embed-responsive-4by3">
         <video controls controls loop muted   class="embed-responsive-item">
@@ -354,7 +394,7 @@
       </div>
   </div>
 
-  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
     <span>ARF</span>
     <div class="embed-responsive embed-responsive-4by3">
       <video controls loop muted   class="embed-responsive-item">
@@ -362,7 +402,7 @@
       </video>
     </div>
   </div>
-  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
     <span>StyleGaussian</span>
     <div class="embed-responsive embed-responsive-4by3">
       <video controls loop muted   class="embed-responsive-item">
@@ -370,11 +410,19 @@
       </video>
     </div>
   </div>
-  <div class="col-md-2-4 col-sm-6 col-xs-12 gallery text-center">
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
     <span>G-Style</span>
     <div class="embed-responsive embed-responsive-4by3">
       <video controls loop muted   class="embed-responsive-item">
         <source src="assets\videos\g-style\truck_73.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="col-md-2 col-md-4 col-xs-12 gallery text-center">
+    <span>ABC-GS</span>
+    <div class="embed-responsive embed-responsive-4by3">
+      <video controls loop muted   class="embed-responsive-item">
+        <source src="assets\videos\abc-gs\truck_73.mp4" type="video/mp4">
       </video>
     </div>
   </div>
